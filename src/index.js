@@ -19,3 +19,14 @@ render(
   </Provider>,
   root
 );
+
+//Adding Hot Module Reloading to Create React App
+if (module.hot) {
+  module.hot.accept(Provider, () => {
+    const NextApp = Provider.default;
+    render(
+      <NextApp />,
+      root
+    );
+  });
+}
