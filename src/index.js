@@ -20,13 +20,18 @@ render(
   root
 );
 
-//Adding Hot Module Reloading to Create React App
+/*
+ * Active the Hot Reloading fot the State.
+ * View issue: https://github.com/aaronplanell/todolist-react-redux-wcra/issues/1
+ ***/
 if (module.hot) {
-  module.hot.accept(App, () => {
-    const NextApp = App.default;
+  module.hot.accept('./App', () => {
+    const NextApp = require('./App').default;
     render(
-      <NextApp />,
+      <Provider store={store}>
+        <NextApp />
+      </Provider>,
       root
     );
-  });
-}
+  })
+};
